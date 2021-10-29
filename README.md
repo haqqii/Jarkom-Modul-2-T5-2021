@@ -350,6 +350,6 @@ www             IN      CNAME   mecha.franky.t05.com.
 
 ![messageImage_1635415308414](https://user-images.githubusercontent.com/61973814/139458652-ca464cb2-2229-4d97-a2d3-a60e8c08ddd5.jpg)
 
-cek `alias/CNAME` dengan cara `host -t CNAME www.mecha.franky.t05.com`
+- cek `alias/CNAME` dengan cara `host -t CNAME www.mecha.franky.t05.com`
 
 ![messageImage_1635415563605](https://user-images.githubusercontent.com/61973814/139458842-d0fb53fb-f7b8-42ee-857c-17eae8294b45.jpg)
