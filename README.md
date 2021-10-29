@@ -168,3 +168,185 @@ cek CNAME dengan cara `host -t CNAME www.super.franky.t05.com`
 Buat juga reverse domain untuk domain utama
 
 ### Jawaban Soal 4
+***Server EniesLobby***
+
+Edit file `/etc/bind/named.conf.local` menjadi sebagai berikut:
+```
+zone "franky.t05.com" {  
+        type master;  
+        file "/etc/bind/kaizoku/franky.t05.com";  
+};
+
+zone "2.44.10.in-addr.arpa" {
+        type master;
+        file "/etc/bind/kaizoku/2.44.10.in-addr.arpa";
+};
+```
+- dan lakukan konfigurasi pada file `/etc/bind/kaizoku/2.44.10.in-addr.arpa` seperti berikut ini:
+```
+$TTL    604800  
+@       IN      SOA     franky.t07.com. root.franky.t05.com. (
+                        2021100401      ; Serial
+                        604800          ; Refresh
+                        86400         ; Retry
+                        2419200         ; Expire
+                        604800 )       ; Negative Cache TTL
+;
+2.44.10.in-addr.arpa.   IN      NS      franky.t05.com.
+2                       IN      PTR     franky.t05.com.
+```
+
+***TESTING***
+
+cek dengan cara `host -t PTR 10.44.2.2`
+![messageImage_1635414542063](https://user-images.githubusercontent.com/61973814/139451800-76ee83a3-ea4d-45e2-b3a9-bcdd74dea4d0.jpg)
+
+### Soal 5
+Supaya tetap bisa menghubungi Franky jika server EniesLobby rusak, maka buat Water7 sebagai DNS Slave untuk domain utama
+
+### Jawaban Soal 5
+***Server EniesLobby***
+
+- lakukan konfigurasi pada `file /etc/bind/named.conf.local` sebagai berikut untuk melakukan konfigurasi `DNS Slave` yang mengarah ke `water7` :
+```
+zone "franky.t05.com" {  
+        type master;
+        notify yes;
+        also-notify {10.44.2.3;};  //Masukan IP Water7 tanpa tanda petik
+        allow-transfer {10.44.2.3;}; // Masukan IP Water7 tanpa tanda petik
+        file "/etc/bind/kaizoku/franky.t05.com";
+};
+  
+zone "2.44.10.in-addr.arpa" {
+        type master;
+        file "/etc/bind/kaizoku/2.44.10.in-addr.arpa";
+};
+```
+
+- Lalu lakukan restart sevice bind9 dengan `service bind9 restart`
+
+***Server Water7***
+
+- jalankan command sebelum melakukan konfigurasi
+```
+apt-get update
+apt-get install bind9 -y
+```
+
+- Kemudian buka file `/etc/bind/named.conf.local` pada `Water7` dan tambahkan syntax berikut:
+```
+zone "franky.t05.com" {
+        type slave;
+        masters { 10.44.2.2; }; // Masukan IP EniesLobby tanpa tanda petik
+        file "/var/lib/bind/franky.t05.com";
+};
+```
+
+- lakukan restart sevice bind9 dengan `service bind9 restart`
+
+***TESTING**
+
+- Pada server `EniesLobby` silahkan matikan service bind9 dengan cara `service bind9 stop`
+
+![messageImage_1635415105403](https://user-images.githubusercontent.com/61973814/139454046-1e765223-0549-4941-ab5f-ec32d288de93.jpg)
+
+Melakukan ping dengan server Longuetown
+
+![messageImage_1635415217858](https://user-images.githubusercontent.com/61973814/139454092-3e7e41aa-9305-4c56-80dc-c8fb7570d5c0.jpg)
+
+### Soal 7
+Setelah itu terdapat subdomain `mecha.franky.yyy.com` dengan alias `www.mecha.franky.yyy.com` yang didelegasikan dari `EniesLobby` ke `Water7` dengan IP menuju ke `Skypie` dalam folder `sunnygo`
+
+### Jawaban Soal 7
+***Server EniesLobby***
+
+- lakukan konfigurasi pada file `/etc/bind/kaizoku/franky.t05.com`
+```
+$TTL    604800
+@       IN      SOA     franky.t05.com. root.franky.t05.com. (
+                        2021100401      ; Serial
+                        604800          ; Refresh
+                        86400           ; Retry
+                        2419200         ; Expire
+                        604800 )        ; Negative Cache TTL
+;
+@               IN      NS      franky.t05.com.
+@               IN      A       10.44.2.4 ; IP skypea
+www             IN      CNAME   franky.t05.com.
+super           IN      A       10.44.2.4 ; IP skypea
+www.super       IN      CNAME   super.franky.t05.com.
+ns1             IN      A       10.44.2.3; IP Water7
+mecha           IN      NS      ns1
+```
+
+- Kemudian edit file `/etc/bind/named.conf.options` dan comment pada bagian `dnssec-validation auto;` dan tambahkan baris berikut pada `/etc/bind/named.conf.options`
+```
+allow-query{any;};  
+```
+
+- Kemudian edit file `/etc/bind/named.conf.local` menjadi seperti
+```
+zone "franky.t05.com" {
+        type master;
+        //notify yes;
+        //also-notify {10.44.2.3;};  Masukan IP Water7 tanpa tanda petik
+        allow-transfer {10.44.2.3;}; // Masukan IP Water7 tanpa tanda petik
+        file "/etc/bind/kaizoku/franky.t05.com";
+};
+
+zone "2.44.10.in-addr.arpa" {
+        type master;
+        file "/etc/bind/kaizoku/2.44.10.in-addr.arpa";
+};
+```
+- Melakukan restart sevice bind9 dengan `service bind9 restart`
+***Server Water7***
+
+- Edit file `/etc/bind/named.conf.options` dan comment pada bagian `dnssec-validation auto;`
+- dan tambahkan baris berikut pada `/etc/bind/named.conf.options`
+```
+allow-query{any;}; 
+```
+
+- kemudian edit file `/etc/bind/named.conf.local` untuk delegasi `mecha.franky.t05.com`
+```
+zone "franky.t05.com" {
+    type slave;
+    masters { 10.44.2.2; }; // Masukan IP EniesLobby tanpa tanda petik
+    file "/var/lib/bind/franky.t05.com";
+};  
+  
+zone "mecha.franky.t05.com"{  
+        type master;
+        file "/etc/bind/sunnygo/mecha.franky.t05.com";
+};  
+```
+
+- buat sebuah direktori `mkdir /etc/bind/sunnygo`
+- Lakukan konfigurasi pada file `/etc/bind/sunnygo/mecha.franky.t05.com`
+```
+$TTL    604800
+@       IN      SOA     mecha.franky.t05.com. root.mecha.franky.t05.com. (
+                        2021100401      ; Serial
+                        604800         ; Refresh
+                        86400         ; Retry
+                        2419200         ; Expire
+                        604800 )       ; Negative Cache TTL
+;
+@               IN      NS      mecha.franky.t05.com.
+@               IN      A       10.44.2.4       ;ip skypie
+www             IN      CNAME   mecha.franky.t05.com.
+```
+
+- lakukan restart sevice bind9 dengan `service bind9 restart`
+
+***TESTING***
+
+- ping `mecha.franky.t05.com`
+![messageImage_1635415283662](https://user-images.githubusercontent.com/61973814/139458580-63e7be0a-803e-4c5f-9026-705825b8daa9.jpg)
+
+- ping `www.mecha.franky.t05.com`
+![messageImage_1635415308414](https://user-images.githubusercontent.com/61973814/139458652-ca464cb2-2229-4d97-a2d3-a60e8c08ddd5.jpg)
+
+cek `alias/CNAME` dengan cara `host -t CNAME www.mecha.franky.t05.com`
+![messageImage_1635415563605](https://user-images.githubusercontent.com/61973814/139458842-d0fb53fb-f7b8-42ee-857c-17eae8294b45.jpg)
