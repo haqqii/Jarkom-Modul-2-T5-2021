@@ -530,6 +530,7 @@ konfigurasi file `/etc/apache2/sites-available/super.franky.t05.com.conf` dengan
 ***TESTING***
 
 lynx www.super.franky.t05.com
+
 ![10](https://user-images.githubusercontent.com/73151522/139530858-f6b5e18d-e232-4c0a-a43c-c8517340542b.jpeg)
 
 
@@ -566,6 +567,7 @@ konfigurasi file `/etc/apache2/sites-available/super.franky.t05.com.conf` dengan
 ***TESTING***
 
 lynx www.super.franky.t05.com/public
+
 ![11](https://user-images.githubusercontent.com/73151522/139531025-66029e9c-1639-403c-bbdd-dfe5ef848e8d.jpeg)
 
 
@@ -608,6 +610,7 @@ konfigurasi file `/etc/apache2/sites-available/super.franky.t05.com.conf` dengan
 ***TESTING***
 
 lynx www.super.franky.t05.com/apasih
+
 ![12](https://user-images.githubusercontent.com/73151522/139531030-3fd24410-3fde-4ef5-ac50-2f43eece7413.jpeg)
 
 
@@ -652,6 +655,7 @@ konfigurasi file `/etc/apache2/sites-available/super.franky.t05.com.conf` dengan
 ***TESTING***
 
 lynx www.super.franky.t05a.com/js
+
 ![13](https://user-images.githubusercontent.com/73151522/139531033-87ff1b0c-288f-4ed4-a032-4966dc4b8f14.jpeg)
 
 
