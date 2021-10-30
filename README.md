@@ -665,7 +665,28 @@ Dan Luffy meminta untuk web `www.general.mecha.franky.yyy.com` hanya bisa diakse
 
 ### Jawaban Soal 14
 konfigurasi file /etc/apache2/sites-available/general.mecha.franky.t05.com.conf disini menambahkan VirtualHost baru yang berada pada port 15000 dan 15500 dengan
+```
+<VirtualHost *:15000>
 
+        ServerAdmin webmaster@localhost
+        DocumentRoot /var/www/general.mecha.franky.t05.com
+        ServerName general.mecha.franky.t05.com
+        ServerAlias www.general.mecha.franky.t05.com
+
+
+        ErrorLog \${APACHE_LOG_DIR}/error.log
+        CustomLog \${APACHE_LOG_DIR}/access.log combined
+</VirtualHost>
+<VirtualHost *:15500>        
+        ServerAdmin webmaster@localhost
+        DocumentRoot /var/www/general.mecha.franky.t05.com
+        ServerName general.mecha.franky.t05.com
+        ServerAlias www.general.mecha.franky.t05.com
+        
+
+        ErrorLog \${APACHE_LOG_DIR}/error.log
+        CustomLog \${APACHE_LOG_DIR}/access.log combined
+</VirtualHost> ```
 ![14](https://user-images.githubusercontent.com/73151522/139531043-bd034dd0-8481-4840-a159-a5a705dd1b44.jpeg)
 
 
