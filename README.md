@@ -724,9 +724,8 @@ Listen 15500
 Melakukan restart service apache2 dengan `service apache2 restart`
 
 ***TESTING***
-
-lynx `general.mecha.franky.t05.com:15000`
-lynx `general.mecha.franky.t05.com:15500`
+lynx general.mecha.franky.t05.com:15000
+lynx general.mecha.franky.t05.com:15500
 
 ![14](https://user-images.githubusercontent.com/73151522/139531043-bd034dd0-8481-4840-a159-a5a705dd1b44.jpeg)
 
@@ -810,6 +809,7 @@ Dikarenakan Franky juga ingin mengajak temannya untuk dapat menghubunginya melal
 
 ### Jawaban Soal 17
 Server Skypie
+
 konfigurasi file /var/www/super.franky.t05.com/.htaccess dengan
 ```
 echo "
