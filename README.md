@@ -186,7 +186,7 @@ zone "2.44.10.in-addr.arpa" {
 - dan lakukan konfigurasi pada file `/etc/bind/kaizoku/2.44.10.in-addr.arpa` seperti berikut ini:
 ```
 $TTL    604800  
-@       IN      SOA     franky.t07.com. root.franky.t05.com. (
+@       IN      SOA     franky.t05.com. root.franky.t05.com. (
                         2021100401      ; Serial
                         604800          ; Refresh
                         86400         ; Retry
