@@ -664,6 +664,8 @@ lynx www.super.franky.t05a.com/js
 Dan Luffy meminta untuk web `www.general.mecha.franky.yyy.com` hanya bisa diakses dengan `port 15000` dan `port 15500`
 
 ### Jawaban Soal 14
+konfigurasi file /etc/apache2/sites-available/general.mecha.franky.t05.com.conf disini menambahkan VirtualHost baru yang berada pada port 15000 dan 15500 dengan
+
 ![14](https://user-images.githubusercontent.com/73151522/139531043-bd034dd0-8481-4840-a159-a5a705dd1b44.jpeg)
 
 
