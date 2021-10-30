@@ -19,6 +19,7 @@ EniesLobby akan dijadikan sebagai DNS Master, Water7 akan dijadikan DNS Slave, d
 
 ### Jawaban Soal 1
 - ***Foosha sebagai Router***
+
 ![messageImage_1635412808074](https://user-images.githubusercontent.com/61973814/139356832-7a2e69ea-6efd-459d-82f0-f579611f01c9.jpg)
 
 - ***Loguetown sebagai Client***
@@ -549,7 +550,7 @@ konfigurasi file `/etc/apache2/sites-available/super.franky.t05.com.conf` dengan
         ServerName super.franky.t05.com
         ServerAlias www.super.franky.t05.com
         
-        <Directory /var/www/super.franky.t07.com/public>
+        <Directory /var/www/super.franky.t05.com/public>
                 Options +Indexes
         </Directory>
 
@@ -592,7 +593,7 @@ konfigurasi file `/etc/apache2/sites-available/super.franky.t05.com.conf` dengan
         ErrorDocument 503 /error/404.html
         ErrorDocument 504 /error/404.html
         
-        <Directory /var/www/super.franky.t07.com/public>
+        <Directory /var/www/super.franky.t05.com/public>
                 Options +Indexes
         </Directory>
 
@@ -635,7 +636,7 @@ konfigurasi file `/etc/apache2/sites-available/super.franky.t05.com.conf` dengan
         ErrorDocument 503 /error/404.html
         ErrorDocument 504 /error/404.html
         
-        <Directory /var/www/super.franky.t07.com/public>
+        <Directory /var/www/super.franky.t05.com/public>
                 Options +Indexes
         </Directory>
         
