@@ -437,7 +437,7 @@ apt-get install ca-certificates openssl -y
 
 - buat direktori untuk server `franky.t05.com`
 ```
-mkdir /var/www/franky.t07.com
+mkdir /var/www/franky.t05.com
 ```
 
 - dan copykan file content dengan cara :
