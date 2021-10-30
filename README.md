@@ -527,6 +527,9 @@ konfigurasi file `/etc/apache2/sites-available/super.franky.t05.com.conf` dengan
         </Directory>
 </VirtualHost>
 ```
+***TESTING***
+
+lynx www.super.franky.t05.com
 ![10](https://user-images.githubusercontent.com/73151522/139530858-f6b5e18d-e232-4c0a-a43c-c8517340542b.jpeg)
 
 
@@ -534,13 +537,77 @@ konfigurasi file `/etc/apache2/sites-available/super.franky.t05.com.conf` dengan
 Akan tetapi, pada folder `/public`, Luffy ingin hanya dapat melakukan directory listing saja.
 
 ### Jawaban Soal 11
+***Server Skypie***
+
+konfigurasi file `/etc/apache2/sites-available/super.franky.t05.com.conf` dengan menambah Options +Indexes seperti berikut
+```
+<VirtualHost *:80>
+
+        ServerAdmin webmaster@localhost
+        DocumentRoot /var/www/super.franky.t05.com
+        ServerName super.franky.t05.com
+        ServerAlias www.super.franky.t05.com
+        
+        <Directory /var/www/super.franky.t07.com/public>
+                Options +Indexes
+        </Directory>
+
+        ErrorLog \${APACHE_LOG_DIR}/error.log
+        CustomLog \${APACHE_LOG_DIR}/access.log combined
+
+        <Directory /var/www/franky.t05.com>
+                Options +FollowSymLinks -Multiviews
+                AllowOverride All
+        </Directory>
+</VirtualHost>
+```
+- jangan lupa Melakukan restart service apache2 dengan `service apache2 restart`
+
+***TESTING***
+
+lynx www.super.franky.t05.com/public
 ![11](https://user-images.githubusercontent.com/73151522/139531025-66029e9c-1639-403c-bbdd-dfe5ef848e8d.jpeg)
 
 
 ### Soal 12
-Tidak hanya itu, Luffy juga menyiapkan error file `404.html` pada folder `/error` untuk mengganti error kode pada apache .
+Tidak hanya itu, Luffy juga menyiapkan error file `404.html` pada folder `/error` untuk mengganti error kode pada apache.
 
 ### Jawaban Soal 12
+***Server Skypie***
+
+konfigurasi file `/etc/apache2/sites-available/super.franky.t05.com.conf` dengan menambah ErrorDocument yang mengarah ke /error/404.html seperti berikut
+```
+<VirtualHost *:80>
+
+        ServerAdmin webmaster@localhost
+        DocumentRoot /var/www/super.franky.t05.com
+        ServerName super.franky.t05.com
+        ServerAlias www.super.franky.t05.com
+        
+        ErrorDocument 404 /error/404.html
+        ErrorDocument 500 /error/404.html
+        ErrorDocument 502 /error/404.html
+        ErrorDocument 503 /error/404.html
+        ErrorDocument 504 /error/404.html
+        
+        <Directory /var/www/super.franky.t07.com/public>
+                Options +Indexes
+        </Directory>
+
+        ErrorLog \${APACHE_LOG_DIR}/error.log
+        CustomLog \${APACHE_LOG_DIR}/access.log combined
+
+        <Directory /var/www/franky.t05.com>
+                Options +FollowSymLinks -Multiviews
+                AllowOverride All
+        </Directory>
+</VirtualHost>
+```
+- jangan lupa Melakukan restart service apache2 dengan `service apache2 restart`
+
+***TESTING***
+
+lynx www.super.franky.t05.com/apasih
 ![12](https://user-images.githubusercontent.com/73151522/139531030-3fd24410-3fde-4ef5-ac50-2f43eece7413.jpeg)
 
 
@@ -548,6 +615,43 @@ Tidak hanya itu, Luffy juga menyiapkan error file `404.html` pada folder `/error
 Luffy juga meminta Nami untuk dibuatkan konfigurasi virtual host. Virtual host ini bertujuan untuk dapat mengakses file asset `www.super.franky.yyy.com/public/js` menjadi `www.super.franky.yyy.com/js.`
 
 ### Jawaban Soal 13
+***Server Skypie***
+
+konfigurasi file `/etc/apache2/sites-available/super.franky.t05.com.conf` dengan menambah Alias seperti berikut
+```
+<VirtualHost *:80>
+
+        ServerAdmin webmaster@localhost
+        DocumentRoot /var/www/super.franky.t05.com
+        ServerName super.franky.t05.com
+        ServerAlias www.super.franky.t05.com
+        
+        ErrorDocument 404 /error/404.html
+        ErrorDocument 500 /error/404.html
+        ErrorDocument 502 /error/404.html
+        ErrorDocument 503 /error/404.html
+        ErrorDocument 504 /error/404.html
+        
+        <Directory /var/www/super.franky.t07.com/public>
+                Options +Indexes
+        </Directory>
+        
+        Alias \"/js\" \"/var/www/super.franky.t05.com/public/js\"
+
+        ErrorLog \${APACHE_LOG_DIR}/error.log
+        CustomLog \${APACHE_LOG_DIR}/access.log combined
+
+        <Directory /var/www/franky.t05.com>
+                Options +FollowSymLinks -Multiviews
+                AllowOverride All
+        </Directory>
+</VirtualHost>
+```
+- jangan lupa Melakukan restart service apache2 dengan `service apache2 restart`
+
+***TESTING***
+
+lynx www.super.franky.t05a.com/js
 ![13](https://user-images.githubusercontent.com/73151522/139531033-87ff1b0c-288f-4ed4-a032-4966dc4b8f14.jpeg)
 
 
