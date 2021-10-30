@@ -199,6 +199,7 @@ $TTL    604800
 ***TESTING***
 
 cek dengan cara `host -t PTR 10.44.2.2`
+
 ![messageImage_1635414542063](https://user-images.githubusercontent.com/61973814/139451800-76ee83a3-ea4d-45e2-b3a9-bcdd74dea4d0.jpg)
 
 ### Soal 5
