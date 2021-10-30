@@ -809,10 +809,51 @@ Dikarenakan Franky juga ingin mengajak temannya untuk dapat menghubunginya melal
 ### Jawaban Soal 17
 Server Skypie
 konfigurasi file /var/www/super.franky.t05.com/.htaccess dengan
-
+```
+echo "
+RewriteEngine On
+RewriteCond %{REQUEST_URI} ^/public/images/(.*)franky(.*)
+RewriteCond %{REQUEST_URI} !/public/images/franky.png
+RewriteRule /.* http://super.franky.t05.com/public/images/franky.png [L]
+"
+```
 
 konfigurasi file /etc/apache2/sites-available/super.franky.t05.com.conf dengan
+```
+echo "
+<VirtualHost *:80>
 
+        ServerAdmin webmaster@localhost
+        DocumentRoot /var/www/super.franky.t05.com
+        ServerName super.franky.t05.com
+        ServerAlias www.super.franky.t05.com
+
+        ErrorDocument 404 /error/404.html
+        ErrorDocument 500 /error/404.html
+        ErrorDocument 502 /error/404.html
+        ErrorDocument 503 /error/404.html
+        ErrorDocument 504 /error/404.html
+
+        <Directory /var/www/super.franky.t05.com/public>
+                Options +Indexes
+        </Directory>
+
+        Alias \"/js\" \"/var/www/super.franky.t05.com/public/js\"
+
+        <Directory /var/www/super.franky.t05.com>
+                Options +FollowSymLinks -Multiviews
+                AllowOverride All
+        </Directory>
+        ErrorLog \${APACHE_LOG_DIR}/error.log
+        CustomLog \${APACHE_LOG_DIR}/access.log combined
+
+        <Directory /var/www/franky.t05.com>
+                Options +FollowSymLinks -Multiviews
+                AllowOverride All
+        </Directory>
+</VirtualHost>
+"
+```
 
 Melakukan restart service apache2 dengan `service apache2 restart`
 
