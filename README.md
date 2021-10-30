@@ -734,7 +734,45 @@ lynx general.mecha.franky.t05.com:15500
 dengan autentikasi username luffy dan password onepiece dan file di `/var/www/general.mecha.franky.yyy`
 
 ### Jawaban Soal 15
+Server Skypie
+Jalankan Command `htpasswd -c -b /etc/apache2/.htpasswd luffy onepiece`
+konfigurasi file `/etc/apache2/sites-available/general.mecha.franky.t07.com.conf` dengan
+```
+<VirtualHost *:15000>
 
+        ServerAdmin webmaster@localhost
+        DocumentRoot /var/www/general.mecha.franky.t05.com
+        ServerName general.mecha.franky.t05.com
+        ServerAlias www.general.mecha.franky.t05.com
+
+        <Directory \"/var/www/general.mecha.franky.t05.com\">
+                AuthType Basic
+                AuthName \"Restricted Content\"
+                AuthUserFile /etc/apache2/.htpasswd
+                Require valid-user
+        </Directory>
+
+        ErrorLog \${APACHE_LOG_DIR}/error.log
+        CustomLog \${APACHE_LOG_DIR}/access.log combined
+</VirtualHost>
+<VirtualHost *:15500>        
+        ServerAdmin webmaster@localhost
+        DocumentRoot /var/www/general.mecha.franky.t05.com
+        ServerName general.mecha.franky.t05.com
+        ServerAlias www.general.mecha.franky.t05.com
+        
+        <Directory \"/var/www/general.mecha.franky.t05.com\">
+                AuthType Basic
+                AuthName \"Restricted Content\"
+                AuthUserFile /etc/apache2/.htpasswd
+                Require valid-user
+        </Directory>
+        
+        ErrorLog \${APACHE_LOG_DIR}/error.log
+        CustomLog \${APACHE_LOG_DIR}/access.log combined
+</VirtualHost>
+```
+Melakukan restart service apache2 dengan `service apache2 restart`
 
 ### Soal 16
 Dan setiap kali mengakses IP Skypie akan dialihkan secara otomatis ke `www.franky.yyy.com`
