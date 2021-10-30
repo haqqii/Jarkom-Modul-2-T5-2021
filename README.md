@@ -655,7 +655,7 @@ konfigurasi file `/etc/apache2/sites-available/super.franky.t05.com.conf` dengan
 
 ***TESTING***
 
-lynx www.super.franky.t05a.com/js
+lynx www.super.franky.t05.com/js
 
 ![13](https://user-images.githubusercontent.com/73151522/139531033-87ff1b0c-288f-4ed4-a032-4966dc4b8f14.jpeg)
 
@@ -736,7 +736,7 @@ dengan autentikasi username luffy dan password onepiece dan file di `/var/www/ge
 ### Jawaban Soal 15
 Server Skypie
 Jalankan Command `htpasswd -c -b /etc/apache2/.htpasswd luffy onepiece`
-konfigurasi file `/etc/apache2/sites-available/general.mecha.franky.t07.com.conf` dengan
+konfigurasi file `/etc/apache2/sites-available/general.mecha.franky.t05.com.conf` dengan
 ```
 <VirtualHost *:15000>
 
