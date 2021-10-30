@@ -778,6 +778,25 @@ Melakukan restart service apache2 dengan `service apache2 restart`
 Dan setiap kali mengakses IP Skypie akan dialihkan secara otomatis ke `www.franky.yyy.com`
 
 ### Jawaban Soal 16
+Server Skypie
+konfigurasi file `/etc/apache2/sites-available/000-default.conf` dengan
+```
+<VirtualHost *:80>
+
+        ServerAdmin webmaster@localhost
+        DocumentRoot /var/www/html
+
+        RewriteEngine On
+        RewriteCond %{HTTP_HOST} !^franky.t05.com$
+        RewriteRule /.* http://franky.t05.com/ [R]
+
+        ErrorLog \${APACHE_LOG_DIR}/error.log
+        CustomLog \${APACHE_LOG_DIR}/access.log combined
+
+</VirtualHost>
+```
+
+
 ![16](https://user-images.githubusercontent.com/73151522/139531063-08bfadf4-0d12-4259-9f20-084b50b40724.jpeg)
 
 
