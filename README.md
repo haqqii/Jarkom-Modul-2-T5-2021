@@ -810,7 +810,7 @@ Dikarenakan Franky juga ingin mengajak temannya untuk dapat menghubunginya melal
 ### Jawaban Soal 17
 Server Skypie
 
-konfigurasi file /var/www/super.franky.t05.com/.htaccess dengan
+konfigurasi file `/var/www/super.franky.t05.com/.htaccess` dengan
 ```
 echo "
 RewriteEngine On
@@ -820,7 +820,7 @@ RewriteRule /.* http://super.franky.t05.com/public/images/franky.png [L]
 "
 ```
 
-konfigurasi file /etc/apache2/sites-available/super.franky.t05.com.conf dengan
+konfigurasi file `/etc/apache2/sites-available/super.franky.t05.com.conf` dengan
 ```
 echo "
 <VirtualHost *:80>
