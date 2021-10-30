@@ -353,3 +353,137 @@ www             IN      CNAME   mecha.franky.t05.com.
 - cek `alias/CNAME` dengan cara `host -t CNAME www.mecha.franky.t05.com`
 
 ![messageImage_1635415563605](https://user-images.githubusercontent.com/61973814/139458842-d0fb53fb-f7b8-42ee-857c-17eae8294b45.jpg)
+
+
+### Soal 8
+Setelah melakukan konfigurasi server, maka dilakukan konfigurasi Webserver. Pertama dengan webserver `www.franky.yyy.com`. Pertama, luffy membutuhkan webserver dengan DocumentRoot pada `/var/www/franky.yyy.com`.
+
+### Jawaban Soal 8
+***Server Loguetown***
+
+- Melakukan `apt-get update` dan menginstall `lynx` dengan cara
+```
+apt-get update
+apt-get install lynx -y
+```
+
+***Server Skypie***
+
+- lakukan instalasi `Apache2`, `php`, `openssl` untuk melakukan download ke website https dengan cara :
+```
+apt-get install apache2 -y
+service apache2 start
+apt-get install php -y
+apt-get install libapache2-mod-php7.0 -y
+service apache2 
+apt-get install ca-certificates openssl -y
+```
+
+- konfigurasi pada file `/etc/apache2/sites-available/franky.t05.com.conf`. DocumentRoot diletakkan di `/var/www/franky.t05.com`. Dan jangan lupa untuk menambah servername dan serveralias pada DocumentRoot
+```
+<VirtualHost *:80>
+
+        ServerAdmin webmaster@localhost
+        DocumentRoot /var/www/franky.t05.com
+        ServerName franky.t05.com
+        ServerAlias www.franky.t05.com
+
+        ErrorLog \${APACHE_LOG_DIR}/error.log
+        CustomLog \${APACHE_LOG_DIR}/access.log combined
+</VirtualHost>
+```
+
+- buat direktori untuk server `franky.t05.com`
+```
+mkdir /var/www/franky.t07.com
+```
+
+- dan copykan file content dengan cara :
+```
+cp -r /root/Praktikum-Modul-2-Jarkom/franky/. /var/www/franky.t05.com
+```
+
+- jangan lupa untuk merestart apache dengan cara :
+```
+service apache2 restart
+```
+
+***TESTING***
+
+- lynx franky.t05.com
+
+![image](https://user-images.githubusercontent.com/61973814/139517938-b639fc58-31b3-47b1-9c18-56feda5922bc.png)
+
+- lynx www.franky.t05.com
+
+![image](https://user-images.githubusercontent.com/61973814/139517944-56a39539-f56e-43b9-864b-945cf0381821.png)
+
+
+
+### Soal 9
+Setelah itu, Luffy juga membutuhkan agar url `www.franky.yyy.com/index.php/home` dapat menjadi menjadi `www.franky.yyy.com/home`
+
+### Jawaban Soal 9
+***Server Skypie***
+
+- Jalankan perintah `a2enmod rewrite` untuk mengaktifkan module rewrite.
+- Restart apache dengan perintah `service apache2 restart`
+- Lalu konfigurasi pada file /var/www/franky.t05.com/.htaccess dengan
+```
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule (.*) /index.php/\$1 [L]
+```
+- Inti dari konfigurasi tersebut adalah kita melakukan cek apakah request tersebut adalah ke file atau bukan dan ke direktori atau bukan jika hal tersebut terpenuhi aka kita membuat rule untuk melakukan direct ke `/index.php/home`. `$1` merupakan parameter yang diinputkan di url konfigurasi file `/etc/apache2/sites-available/franky.t05.com.conf` dengan :
+```
+<VirtualHost *:80>
+        ServerAdmin webmaster@localhost
+        DocumentRoot /var/www/franky.t05.com
+        ServerName franky.t05.com
+        ServerAlias www.franky.t05.com
+
+        ErrorLog \${APACHE_LOG_DIR}/error.log
+        CustomLog \${APACHE_LOG_DIR}/access.log combined
+
+        <Directory /var/www/franky.t05.com>
+                Options +FollowSymLinks -Multiviews
+                AllowOverride All
+        </Directory>
+</VirtualHost>
+```
+- jangan lupa Melakukan restart service apache2 dengan `service apache2 restart`
+
+
+***TESTING***
+
+lynx www.franky.t05.com/home
+
+![image](https://user-images.githubusercontent.com/61973814/139518192-0d8e2c53-5fed-4096-b13f-4bdf4a6500a8.png)
+
+
+### Soal 10
+Setelah itu, pada subdomain `www.super.franky.yyy.com`, Luffy membutuhkan penyimpanan aset yang memiliki DocumentRoot pada `/var/www/super.franky.yyy.com`
+
+### Jawaban Soal 10
+***Server Skypie***
+
+konfigurasi file `/etc/apache2/sites-available/super.franky.t05.com.conf` dengan
+```
+<VirtualHost *:80>
+
+        ServerAdmin webmaster@localhost
+        DocumentRoot /var/www/super.franky.t05.com
+        ServerName super.franky.t05.com
+        ServerAlias www.super.franky.t05.com
+
+        ErrorLog \${APACHE_LOG_DIR}/error.log
+        CustomLog \${APACHE_LOG_DIR}/access.log combined
+
+        <Directory /var/www/franky.t05.com>
+                Options +FollowSymLinks -Multiviews
+                AllowOverride All
+        </Directory>
+</VirtualHost>
+```
+
