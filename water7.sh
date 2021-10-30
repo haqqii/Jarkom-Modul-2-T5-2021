@@ -54,7 +54,7 @@ service bind9 restart
 # Nomor 7
 echo "
 \$TTL    604800
-@       IN      SOA     mecha.franky.t05.com. root.mecha.franky.t07.com. (
+@       IN      SOA     mecha.franky.t05.com. root.mecha.franky.t05.com. (
                         2021100401      ; Serial
                         604800         ; Refresh
                         86400         ; Retry
