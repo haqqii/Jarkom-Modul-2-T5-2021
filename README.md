@@ -688,6 +688,45 @@ konfigurasi file /etc/apache2/sites-available/general.mecha.franky.t05.com.conf 
         CustomLog \${APACHE_LOG_DIR}/access.log combined
 </VirtualHost>
 ```
+
+selanjutnya
+```
+a2ensite general.mecha.franky.t05.com
+service apache2 restart
+mkdir /var/www/general.mecha.franky.t05.com
+cp -r /root/Praktikum-Modul-2-Jarkom/general.mecha.franky/. /var/www/general.mecha.franky.t05.com/
+```
+
+konfigurasi file `/var/www/general.mecha.franky.t05.com/index.php` dengan
+```
+<?php
+    echo 'selamat 14';
+?>
+```
+
+konfigurasi file `/etc/apache2/ports.conf` menambahkan Listen 15000 dan 15500 dengan
+```
+# If you just change the port or add more ports here, you will likely also
+# have to change the VirtualHost statement in
+# /etc/apache2/sites-enabled/000-default.conf
+
+Listen 80
+Listen 15000
+Listen 15500
+<IfModule ssl_module>
+        Listen 443
+</IfModule>
+
+<IfModule mod_gnutls.c>
+        Listen 443
+</IfModule>
+```
+Melakukan restart service apache2 dengan `service apache2 restart`
+
+***TESTING***
+lynx general.mecha.franky.t05.com:15000
+lynx general.mecha.franky.t05.com:15500
+
 ![14](https://user-images.githubusercontent.com/73151522/139531043-bd034dd0-8481-4840-a159-a5a705dd1b44.jpeg)
 
 
