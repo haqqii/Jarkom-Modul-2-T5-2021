@@ -686,4 +686,15 @@ Dan setiap kali mengakses IP Skypie akan dialihkan secara otomatis ke `www.frank
 Dikarenakan Franky juga ingin mengajak temannya untuk dapat menghubunginya melalui website `www.super.franky.yyy.com`, dan dikarenakan pengunjung web server pasti akan bingung dengan randomnya images yang ada, maka Franky juga meminta untuk mengganti request gambar yang memiliki substring “franky” akan diarahkan menuju `franky.png`. Maka bantulah Luffy untuk membuat konfigurasi dns dan web server ini!
 
 ### Jawaban Soal 17
+Server Skypie
+konfigurasi file /var/www/super.franky.t05.com/.htaccess dengan
+
+
+konfigurasi file /etc/apache2/sites-available/super.franky.t05.com.conf dengan
+
+
+Melakukan restart service apache2 dengan `service apache2 restart`
+
+***TESTING***
+lynx `super.franky.t05.com/public/images/HAHAfrankyYUHU`
 ![17](https://user-images.githubusercontent.com/73151522/139531070-3a6298f4-d725-4e0a-8545-d4946d10762a.jpeg)
