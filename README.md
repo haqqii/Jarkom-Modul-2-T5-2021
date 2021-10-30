@@ -244,7 +244,7 @@ zone "franky.t05.com" {
 
 - lakukan restart sevice bind9 dengan `service bind9 restart`
 
-***TESTING**
+***TESTING***
 
 - Pada server `EniesLobby` silahkan matikan service bind9 dengan cara `service bind9 stop`
 
@@ -254,10 +254,10 @@ Melakukan ping dengan server Longuetown
 
 ![messageImage_1635415217858](https://user-images.githubusercontent.com/61973814/139454092-3e7e41aa-9305-4c56-80dc-c8fb7570d5c0.jpg)
 
-### Soal 7
+### Soal 6
 Setelah itu terdapat subdomain `mecha.franky.yyy.com` dengan alias `www.mecha.franky.yyy.com` yang didelegasikan dari `EniesLobby` ke `Water7` dengan IP menuju ke `Skypie` dalam folder `sunnygo`
 
-### Jawaban Soal 7
+### Jawaban Soal 6
 ***Server EniesLobby***
 
 - lakukan konfigurasi pada file `/etc/bind/kaizoku/franky.t05.com`
@@ -353,6 +353,46 @@ www             IN      CNAME   mecha.franky.t05.com.
 - cek `alias/CNAME` dengan cara `host -t CNAME www.mecha.franky.t05.com`
 
 ![messageImage_1635415563605](https://user-images.githubusercontent.com/61973814/139458842-d0fb53fb-f7b8-42ee-857c-17eae8294b45.jpg)
+
+
+### Soal 7
+Untuk memperlancar komunikasi Luffy dan rekannya, dibuatkan subdomain melalui `Water7` dengan nama `general.mecha.franky.yyy.com` dengan alias `www.general.mecha.franky.yyy.com` yang mengarah ke `Skypie`
+
+### Jawaban Soal 7
+***Server Water7***
+
+- konfigurasi pada file /etc/bind/sunnygo/mecha.franky.t05.com dengan
+```
+$TTL    604800
+@       IN      SOA     mecha.franky.t05.com. root.mecha.franky.t05.com. (
+                        2021100401      ; Serial
+                        604800         ; Refresh
+                        86400         ; Retry
+                        2419200         ; Expire
+                        604800 )       ; Negative Cache TTL
+;
+@               IN      NS      mecha.franky.t05.com.
+@               IN      A       10.44.2.4       ;ip skypie
+www             IN      CNAME   mecha.franky.t05.com.
+general         IN      A       10.44.2.4       ;IP skypie
+www.general     IN      CNAME   mecha.franky.t05.com.
+```
+- Setelah merubah itu, jangan lupa untuk Melakukan restart sevice bind9 dengan `service bind9 restart`
+
+
+***TESTING***
+
+ping `general.mecha.franky.t05.com`
+
+![messageImage_1635415683307](https://user-images.githubusercontent.com/61973814/139518469-1a0f0d47-2129-48d0-bd22-efa2f7066c66.jpg)
+
+ping `www.general.mecha.franky.t05.com`
+
+![messageImage_1635415660989](https://user-images.githubusercontent.com/61973814/139518491-a2c104f9-ad86-489b-be30-07b476c02eaa.jpg)
+
+cek alias/CNAME dengan `host -t CNAME www.general.mecha.franky.t05.com`
+
+![messageImage_1635415611647](https://user-images.githubusercontent.com/61973814/139518509-a6ebbeda-ca6f-473e-9ea9-b1835b769d98.jpg)
 
 
 ### Soal 8
