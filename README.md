@@ -527,94 +527,35 @@ konfigurasi file `/etc/apache2/sites-available/super.franky.t05.com.conf` dengan
         </Directory>
 </VirtualHost>
 ```
+![10](https://user-images.githubusercontent.com/73151522/139530858-f6b5e18d-e232-4c0a-a43c-c8517340542b.jpeg)
 
 
 ### Soal 11
 Akan tetapi, pada folder `/public`, Luffy ingin hanya dapat melakukan directory listing saja.
 
 ### Jawaban Soal 11
-***Server Skypie***
-
-konfigurasi file `/etc/apache2/sites-available/super.franky.t05.com.conf` dengan menambahkan Options +Indexes seperti berikut
-```
-<VirtualHost *:80>
-
-        ServerAdmin webmaster@localhost
-        DocumentRoot /var/www/super.franky.t05.com
-        ServerName super.franky.t05.com
-        ServerAlias www.super.franky.t05.com
-
-        <Directory /var/www/super.franky.t05.com/public>
-                Options +Indexes
-        </Directory>
-
-        ErrorLog \${APACHE_LOG_DIR}/error.log
-        CustomLog \${APACHE_LOG_DIR}/access.log combined
-
-        <Directory /var/www/franky.t05.com>
-                Options +FollowSymLinks -Multiviews
-                AllowOverride All
-        </Directory>
-</VirtualHost>
-```
-- jangan lupa Melakukan restart service apache2 dengan `service apache2 restart`
-
-***TESTING***
-lynx www.super.franky.t05.com/public
-![image](https://user-images.githubusercontent.com/73151831/139530030-a411a2eb-f3c5-4b8c-aca4-d93f840ba5ae.png)
+![11](https://user-images.githubusercontent.com/73151522/139531025-66029e9c-1639-403c-bbdd-dfe5ef848e8d.jpeg)
 
 
 ### Soal 12
-Tidak hanya itu, Luffy juga menyiapkan error file `404.html` pada folder `/error` untuk mengganti error kode pada apache.
+Tidak hanya itu, Luffy juga menyiapkan error file `404.html` pada folder `/error` untuk mengganti error kode pada apache .
 
 ### Jawaban Soal 12
-***Server Skypie***
-
-konfigurasi file `/etc/apache2/sites-available/super.franky.t05.com.conf` dengan menambahkan ErrorDocument yang diarahkan ke file /error/404.html seperti berikut
-```
-<VirtualHost *:80>
-
-        ServerAdmin webmaster@localhost
-        DocumentRoot /var/www/super.franky.t05.com
-        ServerName super.franky.t05.com
-        ServerAlias www.super.franky.t05.com
-        
-        ErrorDocument 404 /error/404.html
-        ErrorDocument 500 /error/404.html
-        ErrorDocument 502 /error/404.html
-        ErrorDocument 503 /error/404.html
-        ErrorDocument 504 /error/404.html
-
-        <Directory /var/www/super.franky.t05.com/public>
-                Options +Indexes
-        </Directory>
-
-        ErrorLog \${APACHE_LOG_DIR}/error.log
-        CustomLog \${APACHE_LOG_DIR}/access.log combined
-
-        <Directory /var/www/franky.t05.com>
-                Options +FollowSymLinks -Multiviews
-                AllowOverride All
-        </Directory>
-</VirtualHost>
-```
-- jangan lupa Melakukan restart service apache2 dengan `service apache2 restart`
-
-***TESTING***
-lynx www.super.franky.t05.com/LOL
-![image](https://user-images.githubusercontent.com/73151831/139530228-10584858-3c6a-4de9-90fb-32199c483268.png)
+![12](https://user-images.githubusercontent.com/73151522/139531030-3fd24410-3fde-4ef5-ac50-2f43eece7413.jpeg)
 
 
 ### Soal 13
 Luffy juga meminta Nami untuk dibuatkan konfigurasi virtual host. Virtual host ini bertujuan untuk dapat mengakses file asset `www.super.franky.yyy.com/public/js` menjadi `www.super.franky.yyy.com/js.`
 
 ### Jawaban Soal 13
+![13](https://user-images.githubusercontent.com/73151522/139531033-87ff1b0c-288f-4ed4-a032-4966dc4b8f14.jpeg)
 
 
 ### Soal 14
 Dan Luffy meminta untuk web `www.general.mecha.franky.yyy.com` hanya bisa diakses dengan `port 15000` dan `port 15500`
 
 ### Jawaban Soal 14
+![14](https://user-images.githubusercontent.com/73151522/139531043-bd034dd0-8481-4840-a159-a5a705dd1b44.jpeg)
 
 
 ### Soal 15
@@ -627,9 +568,11 @@ dengan autentikasi username luffy dan password onepiece dan file di `/var/www/ge
 Dan setiap kali mengakses IP Skypie akan dialihkan secara otomatis ke `www.franky.yyy.com`
 
 ### Jawaban Soal 16
+![16](https://user-images.githubusercontent.com/73151522/139531063-08bfadf4-0d12-4259-9f20-084b50b40724.jpeg)
 
 
 ### Soal 17
 Dikarenakan Franky juga ingin mengajak temannya untuk dapat menghubunginya melalui website `www.super.franky.yyy.com`, dan dikarenakan pengunjung web server pasti akan bingung dengan randomnya images yang ada, maka Franky juga meminta untuk mengganti request gambar yang memiliki substring “franky” akan diarahkan menuju `franky.png`. Maka bantulah Luffy untuk membuat konfigurasi dns dan web server ini!
 
 ### Jawaban Soal 17
+![17](https://user-images.githubusercontent.com/73151522/139531070-3a6298f4-d725-4e0a-8545-d4946d10762a.jpeg)
