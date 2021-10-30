@@ -686,7 +686,8 @@ konfigurasi file /etc/apache2/sites-available/general.mecha.franky.t05.com.conf 
 
         ErrorLog \${APACHE_LOG_DIR}/error.log
         CustomLog \${APACHE_LOG_DIR}/access.log combined
-</VirtualHost> ```
+</VirtualHost>
+```
 ![14](https://user-images.githubusercontent.com/73151522/139531043-bd034dd0-8481-4840-a159-a5a705dd1b44.jpeg)
 
 
