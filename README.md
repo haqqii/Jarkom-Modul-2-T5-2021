@@ -798,6 +798,7 @@ konfigurasi file `/etc/apache2/sites-available/000-default.conf` dengan
 Melakukan restart service apache2 dengan `service apache2 restart`
 
 ***TESTING***
+
 lynx 10.44.2.4
 
 ![16](https://user-images.githubusercontent.com/73151522/139531063-08bfadf4-0d12-4259-9f20-084b50b40724.jpeg)
@@ -858,5 +859,7 @@ echo "
 Melakukan restart service apache2 dengan `service apache2 restart`
 
 ***TESTING***
+
 lynx `super.franky.t05.com/public/images/HAHAfrankyYUHU`
+
 ![17](https://user-images.githubusercontent.com/73151522/139531070-3a6298f4-d725-4e0a-8545-d4946d10762a.jpeg)
