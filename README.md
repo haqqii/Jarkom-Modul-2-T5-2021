@@ -724,9 +724,8 @@ Listen 15500
 Melakukan restart service apache2 dengan `service apache2 restart`
 
 ***TESTING***
-
-lynx `general.mecha.franky.t05.com:15000`
-lynx `general.mecha.franky.t05.com:15500`
+lynx general.mecha.franky.t05.com:15000
+lynx general.mecha.franky.t05.com:15500
 
 ![14](https://user-images.githubusercontent.com/73151522/139531043-bd034dd0-8481-4840-a159-a5a705dd1b44.jpeg)
 
@@ -796,7 +795,10 @@ konfigurasi file `/etc/apache2/sites-available/000-default.conf` dengan
 
 </VirtualHost>
 ```
+Melakukan restart service apache2 dengan `service apache2 restart`
 
+***TESTING***
+lynx 10.44.2.4
 
 ![16](https://user-images.githubusercontent.com/73151522/139531063-08bfadf4-0d12-4259-9f20-084b50b40724.jpeg)
 
@@ -815,7 +817,5 @@ konfigurasi file /etc/apache2/sites-available/super.franky.t05.com.conf dengan
 Melakukan restart service apache2 dengan `service apache2 restart`
 
 ***TESTING***
-
 lynx `super.franky.t05.com/public/images/HAHAfrankyYUHU`
-
 ![17](https://user-images.githubusercontent.com/73151522/139531070-3a6298f4-d725-4e0a-8545-d4946d10762a.jpeg)
